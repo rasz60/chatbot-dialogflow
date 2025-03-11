@@ -31,3 +31,5 @@
 ##### 2) Dialogflow NPM 사이트에서 예제 코드 copy
 
 ##### 3) '/textQuery' route callback function으로 paste
+
+##### 4) 변수 config에서 가져오도록 변경, callback function custom
