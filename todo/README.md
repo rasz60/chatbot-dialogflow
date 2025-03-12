@@ -33,3 +33,54 @@
 ##### 3) '/textQuery' route callback function으로 paste
 
 ##### 4) 변수 config에서 가져오도록 변경, callback function custom
+
+### 2. npm run start
+
+##### 1) npm install 실행 시 오류 발생
+
+###### - nodejs v20 설치, vscode deployment tool 다운로드 (node-gyp)
+
+###### - package.json 변경 : node, npm  버전 변경, diabloflow-fulfillment 지원 종료 (대체 -> "@google-cloud/dialogflow": "^6.14.0") 
+
+```
+"engines": {
+    "node": "20.18.3",
+    "npm": "11.2.0"
+  },
+  .
+  .
+  .
+    "dependencies": {
+    "@google-cloud/dialogflow": "^6.14.0",
+    "axios": "^1.8.2",
+    "follow-redirects": "^1.15.6",
+    "json-bigint": "^1.0.0",
+    "node-forge": "^1.3.0",
+    .
+    .
+    .
+  },
+```
+
+##### 2) server/routes/diabloflow.js 수정
+
+```
+.
+.
+.
+
+const dialogflow = require("@google-cloud/dialogflow"); // diabloflow-fulfillment -> @google-cloud/dialogflow
+
+.
+.
+.
+// Create a new session
+const sessionClient = new dialogflow.SessionsClient();
+const sessionPath = sessionClient.projectAgentSessionPath(projectId, sessionId); // @google-cloud/dialogflow sessionClient 객체 메서드
+.
+.
+.
+
+```
+
+### 3. CREDENTIALS 이슈 발생 ---- 해결 중

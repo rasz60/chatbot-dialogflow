@@ -2,22 +2,22 @@ const express = require("express");
 const router = express.Router();
 const structjson = require("./structjson");
 
-const dialogflow = require("dialogflow");
+const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
-
+process.env.GOOGLE_APPLICATION_CREDENTIALS = "c:\\Users\\user\\Downloads\\keys-files.json";
 const config = require("../config/keys");
 const projectId = config.googleProjectID;
 const sessionId = config.dialogFlowSessionID;
 const languageCode = config.dialogFlowSessionLanguageCode;
 // Create a new session
 const sessionClient = new dialogflow.SessionsClient();
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+const sessionPath = sessionClient.projectAgentSessionPath(projectId, sessionId);
 
 // We will make two routes
 
 // Text Query Route
 
-router.post("/textQuery", (req, res) => {
+router.post("/textQuery", async (req, res) => {
   // We need to send some information that comes from the client to Dialogflow API
 
     // The text query request.
@@ -41,9 +41,8 @@ router.post("/textQuery", (req, res) => {
     console.log(`  Response: ${result.fulfillmentText}`);
     
     res.send(result);
-  }
 });
 
 // Event Query Route
 
-module.exprots = router;
+module.exports = router;
