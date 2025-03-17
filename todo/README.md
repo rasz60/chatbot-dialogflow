@@ -40,7 +40,7 @@
 
 ###### - nodejs v20 설치, vscode deployment tool 다운로드 (node-gyp)
 
-###### - package.json 변경 : node, npm  버전 변경, diabloflow-fulfillment 지원 종료 (대체 -> "@google-cloud/dialogflow": "^6.14.0") 
+###### - package.json 변경 : node, npm 버전 변경, diabloflow-fulfillment 지원 종료 (대체 -> "@google-cloud/dialogflow": "^6.14.0")
 
 ```
 "engines": {
@@ -84,3 +84,28 @@ const sessionPath = sessionClient.projectAgentSessionPath(projectId, sessionId);
 ```
 
 ### 3. CREDENTIALS 이슈 발생 ---- 해결 중
+
+###### private key 파일 명 오류.. 해결
+
+# Chapter 3. Source Code - Client
+
+### 1. 'ERR_OSSL_EVP_UNSUPPORTED' 오류 발생
+
+##### Node.js 와 webpack 버전 이슈로 발생
+
+##### Node.js 버전에 맞추어 webpack 버전 변경
+
+###### ★ node_modules 폴더, package-lock.json 삭제 후 실행
+
+###### ★ client 폴더로 경로 이동 후 똑같이 실행
+
+###### ★ client/package.json 파일에 node-scripts 부분 삭제
+
+```
+// client 경로에서 실행
+npm install node-scripts@5 --save
+npm install webpack@latest webpack-cli@latest --save-dev
+npm install
+```
+
+###### root 경로에서 npm run dev 실행
